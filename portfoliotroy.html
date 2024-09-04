@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TroyPortfolio</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #start-button {
+            padding: 15px 30px;
+            background: #444;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <button id="start-button">Start Adventure</button>
+    <video id="portfolio-video" muted>
+        <source src="1.mp4" type="video/mp4">
+    </video>
+
+    <script>
+        const video = document.getElementById('portfolio-video');
+        const button = document.getElementById('start-button');
+
+        button.addEventListener('click', () => {
+            // Разблокируем звук и запускаем видео
+            video.muted = false;
+            video.play().catch(error => {
+                console.error('Error playing video:', error);
+            });
+            button.style.display = 'none'; // Скрыть кнопку после начала воспроизведения
+        });
+
+        video.addEventListener('play', () => {
+            // Устанавливаем громкость на максимум через 5 секунд после начала воспроизведения
+            setTimeout(() => {
+                video.volume = 1.0;
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
